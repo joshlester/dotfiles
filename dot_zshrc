@@ -1,0 +1,122 @@
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/josh/.zsh/completions:"* ]]; then export FPATH="/home/josh/.zsh/completions:$FPATH"; fi
+# Activate VIM mode
+set -o vi
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Shortcuts
+alias proton="protonvpn-cli"
+
+# SSH
+
+## Rendivo
+
+### Not in use
+# alias sshren="ssh rendivo-admin@23.101.216.72 -i /home/josh/project/rendivo/rendivo_assets/rendivo_ssh_keys/rendivo_ssh_azure.key"
+# alias sshvm1="ssh rendivo-admin@202.174.105.137 -p 2221 -i /home/josh/project/rendivo/rendivo_assets/rendivo_ssh_keys/rendivo_ssh_azure.key"
+# alias sshrentest="ssh rendivo-admin@20.92.110.231 -i /home/josh/project/rendivo/rendivo_assets/rendivo_ssh_keys/rendivo_ssh_azure.key"
+
+### SSH Rendivo app server VM
+SSH_KEY_PATH_RENDIVO_APP_SERVER_VM="/home/josh/.ssh/rendivo/rendivo_app_server_vm.prv.key"
+SSH_KEY_PATH_RENDIVO_APP_SERVER=$SSH_KEY_PATH_RENDIVO_APP_SERVER_VM
+
+#alias sshapp1="ssh rendivo-admin@202.174.105.137 -p 22053"
+#alias sshapp2="ssh rendivo-admin@202.174.105.137 -p 22054"
+
+alias sshvmg1="ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa rendivo-admin@202.174.105.137 -p 2223 -i $SSH_KEY_PATH_RENDIVO_APP_SERVER" 
+alias sshvmg2="ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa rendivo-admin@202.174.105.137 -p 2224 -i $SSH_KEY_PATH_RENDIVO_APP_SERVER"
+
+### SSH Rendivo NAS
+alias sshnas="ssh 3dviz@202.174.103.84 -p 42022"
+
+### SSH Rendivo app servers
+alias sshapp1="ssh -p 22053 _3dviz@202.174.103.84"
+
+alias sshapp2="ssh -p 22054 _3dviz@202.174.103.84"
+
+# Open DBeaver (opening via gnome throws exception)
+alias dbe="nohup /var/lib/flatpak/app/io.dbeaver.DBeaverCommunity/current/active/files/dbeaver/dbeaver -data /home/josh/.local/share/DBeaverData/workspace6"
+
+# Open licensed Filezilla
+alias fz="nohup /home/josh/apps/FileZilla3/bin/filezilla"
+
+### SSH Rendivo GPU servers
+SSH_KEY_PATH_RENDIVO_GPU_SERVER="/home/josh/.ssh/rendivo/rendivo_gpu_server.prv.key"
+
+alias sshgpu1="ssh -p 22051 3dviz@202.174.103.84 -i $SSH_KEY_PATH_RENDIVO_GPU_SERVER"
+alias sshgpu2="ssh -p 22052 3dviz@202.174.103.84 -i $SSH_KEY_PATH_RENDIVO_GPU_SERVER"
+
+# Vultr Servers
+alias sshv02="ssh -i ~/.ssh/vultr-02 root@108.61.169.231"
+
+# Eltirus server (DigitalOcean)
+alias ssheltirus="ssh root@128.199.196.212"
+
+# Eltirus server (Azure)
+alias sshee="ssh -i ~/.ssh/eltirus_enable/eltirus_enable_vm_01.prv eltirus_enable_01@20.211.108.35"
+
+# Define environment variables
+export VISUAL="/usr/bin/vim"
+export EDITOR="/usr/bin/vim"
+
+# NNN configs
+export NNN_USE_EDITOR=1
+export NNN_COLORS=1267
+
+n()
+{
+  # Block nesting of nnn in subshells
+  if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+    echo "nnn is already running."
+    return
+  fi
+
+  export NNN_TMPFILE=${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd 
+
+  nnn -Rd "$@"
+
+  if [ -f "$NNN_TMPFILE" ]; then
+    . "$NNN_TMPFILE"
+    rm -f "$NNN_TMPFILE" > /dev/null
+  fi
+}
+
+
+# export VISUAL="code"
+export SSH_KEY_PATH_RENDIVO_APP_SERVER=$SSH_KEY_PATH_RENDIVO_APP_SERVER
+
+# Update PATH variable
+export PATH=$PATH:/home/josh/.cargo/bin
+export PATH=$PATH:/home/josh/.local/bin
+
+### Export Deno path ###
+export DENO_INSTALL="/home/$USER/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Source env
+source ~/.env
+
+# zsh-autosuggestions (refer by starship)
+# https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# https://github.com/agkozak/zsh-z
+source ~/.zsh/zsh-z/zsh-z.plugin.zsh
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Required by z plugin
+autoload -U compinit && compinit
+zstyle ':completion:*' menu select
+
+# https://starship.rs/
+eval "$(starship init zsh)"
+
+alias dotfiles='/usr/bin/git --git-dir=/home/josh/.dotfiles/ --work-tree=/home/josh'
+. "/home/josh/.deno/env"
