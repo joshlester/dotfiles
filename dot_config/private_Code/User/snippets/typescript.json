@@ -1,0 +1,12 @@
+{
+  "logheaders": {
+    "prefix": "logheaders",
+    "description": "",
+    "body": [
+      "for (const header of resp.headers.entries()) {",
+      "  console.log(header[0] + ': ' + header[1]);",
+      "}",
+      ""
+    ]
+  }
+}

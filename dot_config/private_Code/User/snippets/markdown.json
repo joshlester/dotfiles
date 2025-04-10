@@ -1,0 +1,13 @@
+{
+  "mdtable": {
+    "prefix": "mdtable",
+    "description": "",
+    "body": [
+      "| Column 1 | Column 2 | Column 3 |",
+      "| -------- | -------- | -------- |",
+      "| One      | 1        | x        |",
+      "| Two      | 2        | xx       |",
+      ""
+    ]
+  }
+}

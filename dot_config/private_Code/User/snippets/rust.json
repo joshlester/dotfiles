@@ -1,0 +1,49 @@
+{
+	// Place your snippets for rust here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"with connection": {
+		"prefix": "with conn",
+		"body": [
+    "let run_with_connection = |job_id: &str, conn: &mut Connection| -> Option<usize> {",
+        "conn.sadd::<_, _, usize>(set_namespace, job_id)",
+            ".map_err(|err| {",
+                "log_error(format!(",
+                    "\"Error adding job key {} to {}: {}\",",
+                    "job_id, set_namespace, err",
+                "))",
+            "})",
+            ".ok()",
+    "};",
+
+    "let result = conn.map_or_else(",
+        "|| {",
+            "mem_db::get_connection().map_or_else(",
+                "|| {",
+                    "log_error(format!(",
+                        "\"Failed to add job ID {} to {}, no connection\",",
+                        "job_id, set_namespace",
+                    "));",
+                    "None",
+                "},",
+                "|mut conn| run_with_connection(job_id, &mut conn),",
+            ")",
+        "},",
+        "|conn| run_with_connection(job_id, conn),",
+    ");",
+
+    "result",
+		],
+		"description": "Run a command with existing connection"
+	},
+}
