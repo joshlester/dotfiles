@@ -1,0 +1,231 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run the `open default settings` command
+// from the command palette or from `Zed` application menu.
+//
+// Josh's notes:
+// Example configs:
+// https://www.kevnu.com/en/posts/10
+// https://gist.github.com/pedronauck/21732d8cdb2ffb47035b70f57c2a7d12
+//
+{
+  "env": {
+    "ANTHROPIC_API_KEY": "sk-3v8f1f8b8a8c4a4b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"
+  },
+  "autosave": { "after_delay": { "milliseconds": 1000 } },
+
+  // AI Assistant Configuration
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-7-sonnet-latest"
+    },
+    "version": "2"
+  },
+
+  // Core Editor Settings
+  "vim_mode": true,
+  "show_completions_on_input": true,
+  "cursor_shape": "block",
+  "cursor_blink": false,
+  "scrollbar": { "show": "always" },
+  "scroll_beyond_last_line": "off",
+  "vertical_scroll_margin": 0,
+  "preferred_line_length": 88,
+  "soft_wrap": "none",
+  "relative_line_numbers": true,
+  "hour_format": "hour24",
+  "indent_guides": {
+    "enabled": true
+  },
+
+  // Font Settings
+  "buffer_font_family": "JetBrains Mono NL",
+  "ui_font_family": "JetBrains Mono NL",
+  "buffer_font_size": 14,
+  "ui_font_size": 15,
+  "buffer_font_features": { "liga": false },
+
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "base_keymap": "VSCode",
+  "telemetry": {
+    "metrics": false
+  },
+
+  "show_wrap_guides": true,
+  "wrap_guides": [88], // Character counts at which to show wrap guides in the editor.
+  //
+  // Editor Features
+  "inlay_hints": {
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true,
+    "show_background": false,
+    "edit_debounce_ms": 700,
+    "scroll_debounce_ms": 50,
+    "lsp": {
+      "vtsls": {
+        "settings": {
+          // For JavaScript:
+          "javascript": {
+            "inlayHints": {
+              "parameterNames": {
+                "enabled": "all",
+                "suppressWhenArgumentMatchesName": false
+              },
+              "parameterTypes": {
+                "enabled": true
+              },
+              "variableTypes": {
+                "enabled": true,
+                "suppressWhenTypeMatchesName": true
+              },
+              "propertyDeclarationTypes": {
+                "enabled": true
+              },
+              "functionLikeReturnTypes": {
+                "enabled": true
+              },
+              "enumMemberValues": {
+                "enabled": true
+              }
+            }
+          },
+          // For TypeScript:
+          "typescript": {
+            "inlayHints": {
+              "parameterNames": {
+                "enabled": "all",
+                "suppressWhenArgumentMatchesName": false
+              },
+              "parameterTypes": {
+                "enabled": true
+              },
+              "variableTypes": {
+                "enabled": true,
+                "suppressWhenTypeMatchesName": true
+              },
+              "propertyDeclarationTypes": {
+                "enabled": true
+              },
+              "functionLikeReturnTypes": {
+                "enabled": true
+              },
+              "enumMemberValues": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "nixd": {
+        "settings": {
+          "diagnostic": {
+            "suppress": ["sema-extra-with"]
+          }
+        }
+      }
+    }
+  },
+
+  "journal": {
+    "hour_format": "hour24"
+  },
+
+  // Terminal Configuration
+  "terminal": {
+    "font_family": "JetBrains Mono NL",
+    "font_size": 14,
+    "button": true,
+    "toolbar": {
+      "breadcrumbs": false
+    }
+  },
+  //
+  // Vim Configuration
+  "vim": {
+    "use_system_clipboard": "always",
+    "use_multiline_find": true,
+    "use_smartcase_find": true,
+    "noremap": [
+      // Add tab indentation in visual mode
+      {
+        "mode": "visual",
+        "bindings": {
+          "tab": ">gv", // Indent and reselect visual selection
+          "shift-tab": "<gv" // Unindent and reselect visual selection
+        }
+      }
+    ]
+  },
+
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha"
+  },
+  "experimental.theme_overrides": {
+    "insert_mode": {
+      "cursor": "#FF0000" // Red cursor for normal mode
+    }
+    // "players": [
+    //   {
+
+    //     // "cursor": "#FF0000", // Red cursor for normal mode
+    //     "background": "#00FF00" // Green background for insert mode
+    //     // "selection": "#0000FF" // Blue selection color
+    //   }
+    // ]
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "editor": {
+    "highlight_search": true,
+    "incremental_search": true
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "show_edit_predictions": true,
+
+  "languages": {
+    "TypeScript": {
+      "code_actions_on_format": { "source.organizeImports": true }
+    },
+    "TSX": {
+      "code_actions_on_format": { "source.organizeImports": true }
+    },
+    "Nix": {
+      "language_servers": ["nixd", "!nil"]
+    }
+  },
+  "emmet": {
+    "triggerExpansionOnTab": true,
+    "showSuggestionsAsSnippets": true,
+    "html.attributes": {
+      "label": {
+        "default": {
+          "for": null
+        }
+      }
+    }
+  },
+  "snippets": {
+    "typescriptreact": {
+      "label": "lbl",
+      "body": "<label for=\"${1:input}\">${2:Label Text}</label>",
+      "description": "Custom HTML label snippet without htmlFor attribute"
+    }
+  }
+}

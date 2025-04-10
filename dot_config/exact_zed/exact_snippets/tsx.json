@@ -1,0 +1,9 @@
+{
+  "html label": {
+    "prefix": "lbl",
+    "body": [
+      "<label>$1</label>"
+    ],
+    "description": "A HTML label without attributes"
+  }
+}
