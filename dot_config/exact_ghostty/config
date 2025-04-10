@@ -1,0 +1,10 @@
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+background-opacity = .95
+
+#
+# Not working in Fedora 41
+#
+background-blur = 20 
+theme = catppuccin-mocha.conf
