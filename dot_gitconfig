@@ -1,0 +1,14 @@
+[user]
+	email = josh@pfu.gg
+	name = Josh
+	signingKey = 
+[gpg]
+	program = gpg
+	format = 
+[commit]
+	gpgSign = false
+[tag]
+	forceSignAnnotated = false
+[gpg "ssh"]
+	program = 
+	allowedSignersFile = 
