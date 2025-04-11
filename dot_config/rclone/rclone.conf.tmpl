@@ -1,0 +1,15 @@
+[one_drive_encrypt]
+type = crypt
+remote = one_drive:/crypt
+filename_encryption = standard
+directory_name_encryption = false
+password = {{ pass "josh/one_drive_encrypt_password" }} 
+password2 = {{ pass "josh/one_drive_encrypt_password2" }} 
+
+[bytenaut_cloudflare_r2]
+type = s3
+provider = Cloudflare
+access_key_id = {{ pass "bytenaut/cloudflare_r2_access_key_id" }}
+secret_access_key = {{ pass "bytenaut/cloudflare_r2_secret_access_key" }}
+endpoint = https://642d35ef9506124ad292a0c50a467c9e.r2.cloudflarestorage.com
+
