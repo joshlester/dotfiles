@@ -1,6 +1,12 @@
-[one_drive_encrypt]
+[onedrive]
+type = onedrive
+token = {"access_token": "{{ pass "josh/one_drive_access_token" }}" }
+drive_id = {{ pass "josh/one_drive_id" }} 
+drive_type = personal
+
+[onedrive_crypt]
 type = crypt
-remote = one_drive:/crypt
+remote = onedrive:/crypt
 filename_encryption = standard
 directory_name_encryption = false
 password = {{ pass "josh/one_drive_encrypt_password" }} 
