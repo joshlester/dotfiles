@@ -1,0 +1,13 @@
+window {
+    font-size: 1rem;
+    font-family: "JetBrains Mono";
+}
+
+image {
+    padding: 0 1rem;
+}
+
+#entry {
+    padding: 8px 0px;
+}
+

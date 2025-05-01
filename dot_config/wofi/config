@@ -1,0 +1,10 @@
+# Mode must be drun for images to show
+allow_images=true
+location=center
+image_size=22
+insensitive=true
+location=center
+mode=drun
+normal_window=false
+width=500
+
